@@ -1,0 +1,8 @@
+
+@media (min-width: 1024px) {
+  /* To Prevent page shifting because of scrollbar */
+  /* #app {
+    margin-right: calc(-1 * (100vw - 100%));
+  } */
+}
+
