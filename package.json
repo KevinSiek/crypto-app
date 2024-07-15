@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "firebase": "^10.12.2",
     "pinia": "^2.1.7",
+    "serverless-http": "^3.2.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

@@ -1,4 +1,5 @@
 import express from 'express'
+import serverless from "serverless-http"
 import cors from 'cors'
 import axios from 'axios'
 import config from './config.js'
@@ -60,6 +61,5 @@ app.get('/backend/coin-info', (req, res) => {
   httpApi(options, req, res)
 })
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+
+export const handler = serverless(app);
