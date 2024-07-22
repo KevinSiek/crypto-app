@@ -135,7 +135,7 @@ export const useMetricStore = defineStore('metric', () => {
   function calculateAltcoinData () {
     const altDom = metrics.value.quote.USD.altcoin_market_cap
     const change = (altDom - altcoinDom.current) / altDom * 100
-    if(change === 0 || !isTimePassed(altcoinDom.timestamp.toDate())) return 
+    if(change === 0 || !isTimePassed(altcoinDom?.timestamp?.toDate())) return 
     
     altcoinDom.change = change
     altcoinDom.previous = altcoinDom.current
@@ -148,7 +148,7 @@ export const useMetricStore = defineStore('metric', () => {
   function calculateEthData () {
     const eth = metrics.value.eth_dominance
     const change = (eth - ethDom.current) / eth * 100
-    if(change === 0 || !isTimePassed(ethDom.timestamp.toDate())) return 
+    if(change === 0 || !isTimePassed(ethDom?.timestamp?.toDate())) return 
 
     ethDom.change = change
     ethDom.previous = ethDom.current
@@ -161,7 +161,7 @@ export const useMetricStore = defineStore('metric', () => {
   function calculateBitcoinPriceData () {
     const btcPrice = btc_price.value
     const change = (btcPrice - btcMetrics.current) / btcPrice * 100
-    if(change === 0 || !isTimePassed(btcMetrics.timestamp.toDate())) return 
+    if(change === 0 || !isTimePassed(btcMetrics?.timestamp?.toDate())) return 
 
     btcMetrics.change = change
     btcMetrics.previous = btcMetrics.current
