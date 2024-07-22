@@ -17,7 +17,7 @@
           <div class="btcPrice"> BTC: {{ btcMetrics.change }}</div>
           <div class="btcDom">BTC DOM: {{ bitcoinDom.change }}</div>
           <div class="altDom">Altcoin DOM: {{ altcoinDom.change }}</div>
-          <div class="latestUpdated pt-2">Latest Updated: {{ latestUpdate }} (Updated min 5 minutes)</div>
+          <div class="latestUpdated pt-2">Latest Updated: {{ metricStore.getLatestUpdateTime() }} (Updated min 5 minutes)</div>
         </div>
       </div>
       <div class="watchlist">
@@ -40,17 +40,14 @@ import { storeToRefs } from 'pinia'
 const marketStore = useMarketStore()
 const metricStore = useMetricStore()
 
-onMounted(async () => {
-  marketStore.getMarket()
-  metricStore.getData()
-})
 
 const { market } = storeToRefs(marketStore)
 
 const { bitcoinDom, altcoinDom, btcMetrics } = storeToRefs(metricStore)
 
-const latestUpdate = computed(() => {
-  return btcMetrics.value.timestamp ? btcMetrics.value.timestamp.toDate() : ''
+onMounted(async () => {
+  marketStore.getMarket()
+  metricStore.getData()
 })
 
 </script>
