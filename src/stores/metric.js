@@ -56,7 +56,7 @@ export const useMetricStore = defineStore('metric', () => {
       bitcoinDom.current = doc.data().current
       bitcoinDom.change = doc.data().change
       bitcoinDom.timestamp = doc.data().timestamp
-      // console.log('Get BTC DOM', bitcoinDom)
+
       calculateBitcoinData()
     })
     getDoc(altcoinDomCollectionRef).then((doc) => {
@@ -64,7 +64,7 @@ export const useMetricStore = defineStore('metric', () => {
       altcoinDom.current = doc.data().current
       altcoinDom.change = doc.data().change
       altcoinDom.timestamp = doc.data().timestamp
-      // console.log('Get ALT DOM', altcoinDom)
+
       calculateAltcoinData()
     })
     getDoc(ethDomCollectionRef).then((doc) => {
@@ -72,7 +72,7 @@ export const useMetricStore = defineStore('metric', () => {
       ethDom.current = doc.data().current
       ethDom.change = doc.data().change
       ethDom.timestamp = doc.data().timestamp
-      // console.log('Get ETH DOM', ethDom)
+
       calculateEthData()
     })
     getDoc(btcPriceCollectionRef).then((doc) => {
@@ -80,7 +80,7 @@ export const useMetricStore = defineStore('metric', () => {
       btcMetrics.current = doc.data().current
       btcMetrics.change = doc.data().change
       btcMetrics.timestamp = doc.data().timestamp
-      // console.log('Get BTC PRICE', btcMetrics)
+
       calculateBitcoinPriceData()
     })
     // onSnapshot(bitcoinDomCollectionRef, (doc) => {
@@ -168,7 +168,6 @@ export const useMetricStore = defineStore('metric', () => {
     btcMetrics.current = btcPrice
     btcMetrics.timestamp = serverTimestamp()
     updateDoc(doc(db, 'metrics', 'btc_price'), btcMetrics)
-    console.log(btcMetrics)
     console.log('BTC Updated')
   }
 

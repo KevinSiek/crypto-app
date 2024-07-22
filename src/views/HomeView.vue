@@ -50,7 +50,7 @@ onMounted(async () => {
 })
 
 const latestUpdatedTime = computed(() => {
-  return btcMetrics.value.timestamp.toDate() || ''
+  return btcMetrics.value.timestamp ? btcMetrics.value.timestamp.toDate() : ''
 })
 
 </script>
