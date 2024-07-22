@@ -172,6 +172,7 @@ export const useMetricStore = defineStore('metric', () => {
   }
 
   function getLatestUpdateTime () {
+    console.log(btcMetrics)
     return btcMetrics.timestamp === '' ? '' : btcMetrics.timestamp.toDate()
   }
 
