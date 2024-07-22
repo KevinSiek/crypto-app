@@ -158,7 +158,7 @@ export const useMetricStore = defineStore('metric', () => {
     console.log('ETH Dom Updated')
   }
 
-  function calculateBitcoinPriceData () {
+  async function calculateBitcoinPriceData () {
     const btcPrice = btc_price.value
     const change = (btcPrice - btcMetrics.current) / btcPrice * 100
     if(change === 0 || !isTimePassed(btcMetrics?.timestamp?.toDate())) return 
@@ -168,12 +168,13 @@ export const useMetricStore = defineStore('metric', () => {
     btcMetrics.current = btcPrice
     btcMetrics.timestamp = serverTimestamp()
     updateDoc(doc(db, 'metrics', 'btc_price'), btcMetrics)
+    console.log(btcMetrics)
     console.log('BTC Updated')
   }
 
   function getLatestUpdateTime () {
     console.log(btcMetrics)
-    return btcMetrics.timestamp === '' ? '' : btcMetrics.timestamp.toDate()
+    return btcMetrics.timestamp.toDate() || ''
   }
 
   function condition () {
