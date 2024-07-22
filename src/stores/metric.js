@@ -172,11 +172,6 @@ export const useMetricStore = defineStore('metric', () => {
     console.log('BTC Updated')
   }
 
-  function getLatestUpdateTime () {
-    console.log(btcMetrics)
-    return btcMetrics.timestamp.toDate() || ''
-  }
-
   function condition () {
     if(btcMetrics.change > 0) {
       if (bitcoinDom.change > 0) {
@@ -211,5 +206,5 @@ export const useMetricStore = defineStore('metric', () => {
     return 'Wait'
   }
 
-  return { bitcoinDom, altcoinDom, ethDom, btcMetrics, getData, condition, getLatestUpdateTime }
+  return { bitcoinDom, altcoinDom, ethDom, btcMetrics, getData, condition }
 })
