@@ -44,10 +44,8 @@ const { market } = storeToRefs(marketStore)
 
 const { bitcoinDom, altcoinDom, btcMetrics } = storeToRefs(metricStore)
 
-onMounted(async () => {
-  marketStore.getMarket()
-  metricStore.getData()
-})
+marketStore.getMarket()
+metricStore.getData()
 
 const latestUpdatedTime = computed(() => {
   return btcMetrics.value.timestamp ? btcMetrics.value.timestamp.toDate() : ''
