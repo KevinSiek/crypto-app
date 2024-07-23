@@ -31,11 +31,13 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { computed } from 'vue'
 import { useMarketStore } from '@/stores/market'
 import { useMetricStore } from '@/stores/metric'
 import WatchlistTable from '@/components/WatchlistTable.vue'
 import { storeToRefs } from 'pinia'
+import { Timestamp } from 'firebase/firestore'
+
 
 const marketStore = useMarketStore()
 const metricStore = useMetricStore()
@@ -48,7 +50,7 @@ marketStore.getMarket()
 metricStore.getData()
 
 const latestUpdatedTime = computed(() => {
-  return btcMetrics.value.timestamp ? btcMetrics.value.timestamp.toDate() : ''
+  return btcMetrics.value.timestamp instanceof Timestamp ? btcMetrics.value.timestamp.toDate() : ''
 })
 
 </script>
