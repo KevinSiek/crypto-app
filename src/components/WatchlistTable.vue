@@ -103,9 +103,4 @@ function handleDeleteClick (watchlist) {
   background-color: white;
 }
 
-.tableScroll{
-	overflow:auto;
-	-ms-overflow-style: none; 
-  scrollbar-width: none;
-}
 </style>

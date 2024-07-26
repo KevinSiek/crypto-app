@@ -9,7 +9,11 @@
           </div>
           <div class="mb-3">
             <label for="notes" class="form-label">Information</label>
-            <input type="text" class="form-control" id="information" v-model="market.information">
+            <textarea class="form-control" rows="6" id="information" v-model="market.information"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="rules" class="form-label">Rules</label>
+            <textarea class="form-control" rows="6" id="rules" v-model="market.rules"></textarea>
           </div>
         </form>
         <div class="btn-edit-market">

@@ -10,6 +10,10 @@
           <h5>Information</h5>
           {{ market.information || '' }}
         </div>
+        <div class="rules">
+          <h5>Rules</h5>
+          {{ market.rules || '' }}
+        </div>
         <div class="condition">
           <h5>Condition</h5>
           <h4 class="now">{{ metricStore.condition() }}</h4>
@@ -17,12 +21,16 @@
           <div class="btcPrice"> BTC: {{ btcMetrics.change }}</div>
           <div class="btcDom">BTC DOM: {{ bitcoinDom.change }}</div>
           <div class="altDom">Altcoin DOM: {{ altcoinDom.change }}</div>
-          <div class="latestUpdated pt-2">Latest Updated: {{ latestUpdatedTime }} (Updated min 5 minutes)</div>
+          <div class="latestUpdated pt-2">Latest Updated: {{ latestUpdatedTime }} <br> (Updated min 5 minutes)</div>
+        </div>
+        <div class="latest-update">
+          Latest Updated: <br>
+          {{ market.timestamp.toDate().toLocaleString() }}
         </div>
       </div>
       <div class="watchlist">
         <h3>Watchlist</h3>
-        <div class="tableWatchlist">
+        <div class="tableWatchlist tableScroll">
           <WatchlistTable :type="'show'"/>
         </div>
       </div>
@@ -50,7 +58,7 @@ marketStore.getMarket()
 metricStore.getData()
 
 const latestUpdatedTime = computed(() => {
-  return btcMetrics.value.timestamp instanceof Timestamp ? btcMetrics.value.timestamp.toDate() : ''
+  return btcMetrics.value.timestamp ? btcMetrics.value.timestamp.toDate().toLocaleString() : ''
 })
 
 </script>
@@ -61,14 +69,14 @@ const latestUpdatedTime = computed(() => {
     padding: 7px;
   }
   .status {
-    padding: 20px 0;
+    padding: 20px;
     margin: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border: solid 1px black;  
     border-radius: 10px;
-    min-height: 13vh;
     .label-status {
       font-size: 20px;
     }
@@ -80,8 +88,16 @@ const latestUpdatedTime = computed(() => {
     border-radius: 10px;
     color: white;
   }
-  .information, .condition, .watchlist {
+  .rules {
+    padding: 20px;
+    border: solid 1px black;  
+    border-radius: 10px;
+  }
+  .information, .condition, .watchlist, .rules, .latest-update {
     margin: 20px 0 0 0;  
+  }
+  .latest-update {
+    text-align: center;
   }
   .watchlist {
     padding: 10px;
@@ -93,5 +109,23 @@ const latestUpdatedTime = computed(() => {
     }
   }
 }
+
+@media (min-width: 1024px) {
+  .tableScroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .tableScroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(199, 199, 199); 
+    border-radius: 10px;
+  }
+  .tableScroll::-webkit-scrollbar-thumb {
+    background: rgb(196, 196, 196); 
+    border-radius: 10px;
+  }
+  .tableScroll::-webkit-scrollbar-thumb:hover {
+    background: #696969; 
+  }
+}
+
 
 </style>
