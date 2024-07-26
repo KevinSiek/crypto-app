@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { db } from '@/firebase'
-import { doc, updateDoc, serverTimestamp, getDoc } from "firebase/firestore"
+import { doc, updateDoc, getDoc, Timestamp } from "firebase/firestore"
 import coinMarketCapApi from '@/api/coinmarketcap'
 
 export const useMetricStore = defineStore('metric', () => {
@@ -127,7 +127,7 @@ export const useMetricStore = defineStore('metric', () => {
     bitcoinDom.change = change
     bitcoinDom.previous = bitcoinDom.current
     bitcoinDom.current = btcDom
-    bitcoinDom.timestamp = serverTimestamp()
+    bitcoinDom.timestamp = Timestamp.now()
     updateDoc(doc(db, 'metrics', 'bitcoin_dom'), bitcoinDom)
     console.log('BTC Dom Updated')
   }
@@ -140,7 +140,7 @@ export const useMetricStore = defineStore('metric', () => {
     altcoinDom.change = change
     altcoinDom.previous = altcoinDom.current
     altcoinDom.current = altDom
-    altcoinDom.timestamp = serverTimestamp()
+    altcoinDom.timestamp = Timestamp.now()
     updateDoc(doc(db, 'metrics', 'altcoin_dom'), altcoinDom)
     console.log('Altcoin Dom Updated')
   }
@@ -153,7 +153,7 @@ export const useMetricStore = defineStore('metric', () => {
     ethDom.change = change
     ethDom.previous = ethDom.current
     ethDom.current = eth
-    ethDom.timestamp = serverTimestamp()
+    ethDom.timestamp = Timestamp.now()
     updateDoc(doc(db, 'metrics', 'eth_dom'), ethDom)
     console.log('ETH Dom Updated')
   }
@@ -166,7 +166,7 @@ export const useMetricStore = defineStore('metric', () => {
     btcMetrics.change = change
     btcMetrics.previous = btcMetrics.current
     btcMetrics.current = btcPrice
-    btcMetrics.timestamp = serverTimestamp()
+    btcMetrics.timestamp = Timestamp.now()
     updateDoc(doc(db, 'metrics', 'btc_price'), btcMetrics)
     console.log('BTC Updated')
   }
