@@ -10,7 +10,8 @@ export const useWatchlistStore = defineStore('watchlist', () => {
     coin: '',
     status: '',
     entry_price: 0,
-    notes: ''
+    notes: '',
+    active: true
   })
 
   const watchlistsCollectionRef = collection(db, 'watchlists')
@@ -24,7 +25,8 @@ export const useWatchlistStore = defineStore('watchlist', () => {
           coin: doc.data().coin,
           entry_price: doc.data().entry_price,
           notes: doc.data().notes,
-          status: doc.data().status
+          status: doc.data().status,
+          active: doc.data().active
         }
         newWatchlist.push(watchlist)
       })
@@ -37,6 +39,7 @@ export const useWatchlistStore = defineStore('watchlist', () => {
     watchlist.status = ''
     watchlist.entry_price = 0
     watchlist.notes = ''
+    watchlist.active = true
   }
 
   async function addWatchlist () {
@@ -50,6 +53,7 @@ export const useWatchlistStore = defineStore('watchlist', () => {
     watchlist.status = newWatchlist.status
     watchlist.entry_price = newWatchlist.entry_price
     watchlist.notes = newWatchlist.notes
+    watchlist.active = newWatchlist.active
   }
 
   function editWatchlist () {

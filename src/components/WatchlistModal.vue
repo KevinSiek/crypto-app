@@ -24,6 +24,10 @@
               <label for="notes" class="form-label">Notes</label>
               <input type="text" class="form-control" id="notes" v-model="watchlist.notes">
             </div>
+            <div class="mb-3 form-check">
+              <input class="form-check-input" type="checkbox" id="active" v-model="watchlist.active">
+              <label for="active" class="form-check-label">Active</label>
+            </div>
           </form>
           <div class="modal-footer">
             <button type="submit" class="btn btn-dark" data-bs-dismiss="modal" @click="handleOnClick()">{{ type }}</button>

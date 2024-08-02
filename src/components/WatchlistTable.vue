@@ -1,8 +1,8 @@
 <template>
   <div class="content table-responsive tableScroll">
-    <table v-if="watchlists.length == 0" class="table"> 
-      <tbody :class="{ body : watchlists.length == 0 }">
-        Loading...	
+    <table v-if="activeWatchlist.length == 0" class="table"> 
+      <tbody class="body">
+        No Watchlist... Wait and See	
       </tbody>
     </table>
     <table v-else class="table table-hover table-bordered table-striped">
@@ -23,7 +23,7 @@
       <tbody class="table-group-divider">
         <tr 
           class="align-middle"
-          v-for="(watchlist, index) in watchlists"
+          v-for="(watchlist, index) in activeWatchlist"
           :key="index"
         >
           <th scope="row" class="table-col table-number">{{ index+1 }}</th>
@@ -47,13 +47,17 @@
 <script setup>
 import { useWatchlistStore } from '@/stores/watchlist'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 
 const props = defineProps(['type'])
 
 const watchlistStore = useWatchlistStore()
 
 const { watchlists } = storeToRefs(watchlistStore)
+
+const activeWatchlist = computed(() => {
+  return props.type == 'edit' ? watchlists.value : watchlists.value.filter(item => item.active)
+})
 
 onMounted(() => {
   const watchlistStore = useWatchlistStore()
